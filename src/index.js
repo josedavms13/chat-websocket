@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {composeWithDevTools} from "redux-devtools-extension";
+
+import { createStore } from 'redux';
+import { Provider } from "react-redux";
+
+import userReducer from "./reducers/userReducer";
+import messagesReducer from "./reducers/messagesReducer";
+
+let store = createStore(userReducer, messagesReducer, composeWithDevTools() );
 
 ReactDOM.render(
+
+
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+        <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
