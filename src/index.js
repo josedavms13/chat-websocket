@@ -7,14 +7,14 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 import { createStore } from 'redux';
 import { Provider } from "react-redux";
+import rootReducer from "./reducers/rootReducer";
 
-import userReducer from "./reducers/userReducer";
-import messagesReducer from "./reducers/messagesReducer";
 
-let store = createStore(userReducer, messagesReducer, composeWithDevTools() );
+
+let store = createStore( rootReducer , composeWithDevTools() );
+
 
 ReactDOM.render(
-
 
   <React.StrictMode>
     <Provider store={store}>

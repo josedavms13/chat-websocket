@@ -1,15 +1,15 @@
-
 const INITIAL_STATE = {
-    currentUser : {
-    name : '',
-    password : '',
-    avatarPicture : null
+    currentUser: {
+        name: '',
+        password: '',
+        token: '',
+        avatarPicture: null
     }
 }
 
-const userReducer = (state = INITIAL_STATE, action)=>{
+const userReducer = (state = INITIAL_STATE, action) => {
 
-    switch (action.type){
+    switch (action.type) {
         case 'add_user':
             return {
                 ...state,
