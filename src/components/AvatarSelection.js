@@ -11,6 +11,7 @@ import female4 from '../media/avatarPics/woman/my_character (3).svg'
 import female5 from '../media/avatarPics/woman/my_character (5).svg'
 
 import {useEffect, useState} from "react";
+import AvatarPictureCard from "./registerSubComponents/AvatarPictureCard";
 
 
 const AvatarSelection = ({avatarIndex}) => {
@@ -19,6 +20,87 @@ const AvatarSelection = ({avatarIndex}) => {
     const [femaleAvatarSelectToggle, SetFemaleAvatarSelectToggle] = useState(false);
 
     const [genderSelected, SetGenderSelected] = useState(null);
+
+    const maleArray = [
+        {
+            avatarIndex : 'm1',
+            picture: male1,
+            isSelected: false
+        },
+        {
+            avatarIndex: 'm2',
+            picture: male2,
+            isSelected: false,
+        },
+        {
+            avatarIndex: 'm3',
+
+            picture: male3,
+            isSelected: false
+        },
+        {
+            avatarIndex: 'm4',
+
+            picture: male4,
+            isSelected: false
+        }, {
+            avatarIndex: 'm5',
+
+            picture: male5,
+            isSelected: false
+        }]
+
+    const femaleArray = [
+        {
+            avatarIndex : 'f1',
+            picture: female1,
+            isSelected: false
+        },
+        {
+            avatarIndex: 'f2',
+            picture: female2,
+            isSelected: false,
+        },
+        {
+            avatarIndex: 'f3',
+
+            picture: female3,
+            isSelected: false
+        },
+        {
+            avatarIndex: 'f4',
+
+            picture: female4,
+            isSelected: false
+        }, {
+            avatarIndex: 'f5',
+
+            picture: female5,
+            isSelected: false
+        }]
+
+    const [avatarArrayState, SetAvatarArrayState] = useState(null)
+
+
+    function setAvatarSelected(data) {
+
+        console.log(data)
+
+        const tempArray = [... avatarArrayState];
+
+        const elementIndex = tempArray.findIndex((element)=>element.avatarIndex === data)
+
+        tempArray.forEach((avatar)=>avatar.isSelected=false);
+
+        tempArray[elementIndex].isSelected = true;
+
+        SetAvatarArrayState(tempArray);
+        console.log(maleArray)
+
+
+    }
+
+
 
     useEffect(() => {
         console.log(genderSelected);
@@ -41,65 +123,23 @@ const AvatarSelection = ({avatarIndex}) => {
     }, [genderSelected])
 
 
+    function handleClick(element) {
+        console.log(element)
+    }
+
     return (
         <div>
-
-            <div className="gender-selector">
-                <button onClick={()=>{SetGenderSelected('male')}}>Male</button>
-                <button onClick={()=>{SetGenderSelected('female')}}>Female</button>
+            <div className="gender-selection">
+                <button onClick={()=>SetAvatarArrayState(maleArray)}>Male</button>
+                <button onClick={()=>SetAvatarArrayState(femaleArray)}>Female</button>
             </div>
 
+            {avatarArrayState && avatarArrayState.map((element, key) => {
+                return <AvatarPictureCard picture={element.picture} key={key} isSelected={element.isSelected}
+                                          handleClick={(element) => setAvatarSelected(element)} avatarIndex={element.avatarIndex}/>
+            })}
 
-            {genderSelected &&
-            <div className="avatar-menu">
-                <h1>Choose your Avatar</h1>
-                {maleAvatarSelectToggle&&
-                <div className="male">
-                    <div>
 
-                        <img src={male1} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={male2} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={male3} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={male4} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={male5} alt=""/>
-                    </div>
-                </div>}
-                {femaleAvatarSelectToggle&&
-                <div className="male">
-                    <div>
-
-                        <img src={female1} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={female2} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={female3} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={female4} alt=""/>
-                    </div>
-                    <div>
-
-                        <img src={female5} alt=""/>
-                    </div>
-                </div>}
-            </div>}
         </div>
     )
 }
