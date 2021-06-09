@@ -13,7 +13,11 @@ function Register({registerSubmit}) {
 
     const [passwordDontMatchToggle, SetPasswordDontMatchToggle] = useState(false);
 
+    const [avatarIndex, SetAvatarIndex] = useState('')
+
     function signUpSubmit(data){
+
+        console.log(avatarIndex);
         console.log(data)
     }
 
@@ -51,7 +55,7 @@ function Register({registerSubmit}) {
                     </div>}
                 </form>
 
-                <AvatarSelection />
+                <AvatarSelection avatarIndex={(avatarIndex)=>{SetAvatarIndex(avatarIndex)}}  />
             </div>
 
         );
