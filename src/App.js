@@ -2,7 +2,7 @@ import {HashRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 //region import VIEW components
 import Chat from "./Views/Chat";
 import Login from "./Views/Login";
-
+import HomePage from "./Views/HomePage";
 
 //endregion import  view components
 //region import COMPONENTS
@@ -13,6 +13,7 @@ import {useSelector} from "react-redux";
 import ProtectedRoute from "./provider/protectedPathds/protectedRoute";
 
 
+
 function App() {
 
 
@@ -21,8 +22,10 @@ function App() {
     }
 
     const isAuth = useSelector(state=> state.userReducer.currentUser.isAuth);
-
     console.log(isAuth);
+
+    const homeMode = useSelector(state => state.homeReducer)
+    console.log(homeMode);
 
     return (
         <Router>
@@ -32,8 +35,13 @@ function App() {
                 <Route path={'/chat'}>
                     <ProtectedRoute path={'/chat'} component={Chat} isAuth={isAuth}/>
                 </Route>
+
+                <Route path={'/home'}>
+                    <HomePage mode={homeMode} />
+                </Route>
+
                 <Route path={'/'}>
-                    <Redirect to={'/login'}/>
+                    <Redirect to={'/home'}/>
                 </Route>
             </Switch>
         </Router>

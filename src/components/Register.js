@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router/modules";
+import {useHistory} from "react-router";
+import AvatarSelection from "./AvatarSelection";
 
 function Register({registerSubmit}) {
 
@@ -12,16 +13,20 @@ function Register({registerSubmit}) {
 
     const [passwordDontMatchToggle, SetPasswordDontMatchToggle] = useState(false);
 
+    function signUpSubmit(data){
+        console.log(data)
+    }
+
     function handleDontMatchError(error) {
         SetPasswordDontMatchToggle(true);
         setTimeout(() => {
             SetPasswordDontMatchToggle(false)
-        }, 3000)
+        }, 3000)}
 
         return (
             <div className={'sign-up'}>
                 <h1>Register</h1>
-                <form onSubmit={handleSubmit(signUpSubmit, (err) => handleDontMatchError(err))}>
+                <form onSubmit={handleSubmit(signUpSubmit)}>
                     <label htmlFor="user-name">Name</label>
                     <input type="text" {...register('name')}/>
 
@@ -37,7 +42,7 @@ function Register({registerSubmit}) {
 
 
                     <button type={'submit'}> Submit</button>
-                    <button type={'button'} onClick={()=>{history.push('/login')}}>Cancel
+                    <button type={'button'} onClick={()=>{history.push('/chat')}}>Cancel
                     </button>
 
                     {passwordDontMatchToggle && <div className={'password-dont-match'}>
@@ -46,10 +51,11 @@ function Register({registerSubmit}) {
                     </div>}
                 </form>
 
+                <AvatarSelection />
             </div>
 
         );
-    }
+
 }
 
 export default Register

@@ -3,8 +3,8 @@ const INITIAL_STATE = {
         name: '',
         password: '',
         token: '',
-        avatarPicture: null,
-        isAuth : false,
+        avatarIndex: null,
+        isAuth : true,
     }
 }
 
