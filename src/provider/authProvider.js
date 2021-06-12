@@ -2,10 +2,12 @@
 
 const authProvider = {
 
-    signUp : (data)=>{
+    register : (data)=>{
         const registerUser = {
             user : data.name,
             password: data.password,
+            avatarIndex : data.avatarIndex,
+
         }
 
 

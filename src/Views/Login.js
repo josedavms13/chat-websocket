@@ -28,7 +28,7 @@ function Login({submit}) {
             <button onClick={()=>history.push(`${url}/register`)}>Register</button>
 
             <Switch>
-                <Route exact path={`${path}`}>  </Route>
+                <Route exact path={`${path}`}> </Route>
                 <Route exact path={`${path}/register`}><Register /> </Route>
             </Switch>
 

@@ -86,7 +86,7 @@ const AvatarSelection = ({avatarIndex}) => {
 
         console.log(data)
 
-        avatarIndex = data;
+        avatarIndex(data);
         const tempArray = [... avatarArrayState];
 
         const elementIndex = tempArray.findIndex((element)=>element.avatarIndex === data)

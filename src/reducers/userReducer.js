@@ -4,7 +4,7 @@ const INITIAL_STATE = {
         password: '',
         token: '',
         avatarIndex: null,
-        isAuth : true,
+        isAuth : false,
     }
 }
 
